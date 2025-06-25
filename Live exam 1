@@ -1,0 +1,43 @@
+void main() {
+  List<Map<String, dynamic>> students = [
+    {"name": "Alice", "scores": [85, 90, 78]},
+    {"name": "Bob", "scores": [88, 76, 95]},
+    {"name": "Charlie", "scores": [90, 92, 85]}
+
+
+  ];
+
+
+
+  Map<String, double> averages = {};
+
+  for (var student in students) {
+
+    String name = student['name'];
+    List<int> scores = List<int>.from(student['scores']);
+
+    int total = 0;
+    for (var score in scores) {
+
+      total += score;
+    }
+
+    double average = total / scores.length;
+    averages[name] = double.parse(average.toStringAsFixed(2));
+  }
+
+
+
+
+  // descending
+  var sortedList = averages.entries.toList();
+  sortedList.sort((a, b) => b.value.compareTo(a.value));
+
+
+  print("{");
+  
+  for (var entry in sortedList) {
+    print('  "${entry.key}": ${entry.value},');
+  }
+  print("}");
+}
